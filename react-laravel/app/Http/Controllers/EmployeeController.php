@@ -9,4 +9,5 @@ class EmployeeController extends Controller
     public function index(){
         return view("employee");
       }
+    
 }

@@ -9,5 +9,18 @@ class Employee extends Model
 {
     use HasFactory;
 
-   
+    protected $table = "employee";
+
+    protected $fillable = [
+        'name_lastname',
+        'email',
+        'city',
+        'direction',
+        'phone',
+        'rol'
+    ];
+
+    public function role(){
+        return $this->belongsTo("App\Moldels\Role","rol");
+    }
 }

@@ -21,8 +21,12 @@ class CreateEmployeeTable extends Migration
             $table->string('direction');
             $table->bigInteger('phone');
             $table->unsignedBigInteger('rol');
-            $table->foreign('rol')->references('rol_id')->on('role');
             $table->timestamps();
+            
+            $table->foreign('rol')
+                ->references('rol_id')
+                ->on('role')
+                ->onDelete('cascade');
         });
     }
 

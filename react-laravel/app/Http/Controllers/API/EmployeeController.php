@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -13,10 +13,10 @@ class EmployeeController extends Controller
     {
         $data = Role::get();
 
-        $respose['data'] = $data;
-        $respose['sucess'] = true;
+        $response['data'] = $data;
+        $response['sucess'] = true;
 
-        return $respose;
+        return $response;
     }
     public function create(Request $request)
     {

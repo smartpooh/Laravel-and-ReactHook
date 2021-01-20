@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 function List() {
     return (
         <section>
-            <table class="table">
-                <thead class="thead-dark">
+            <table className="table">
+                <thead className="thead-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
@@ -22,8 +22,8 @@ function List() {
                         <td>California Cll 100</td>
                         <td>3101111111</td>
                         <td>
-                            <a href="#" class="btn btn-light"> Edit </a>
-                            <a href="#" class="btn btn-danger"> Delete </a>
+                            <a href="#" className="btn btn-light"> Edit </a>
+                            <a href="#" className="btn btn-danger"> Delete </a>
                         </td>
                     </tr>
                     <tr>
@@ -33,8 +33,8 @@ function List() {
                         <td>California Cll 100</td>
                         <td>3101111111</td>
                         <td>
-                            <a href="#" class="btn btn-light"> Edit </a>
-                            <a href="#" class="btn btn-danger"> Delete </a>
+                            <a href="#" className="btn btn-light"> Edit </a>
+                            <a href="#" className="btn btn-danger"> Delete </a>
                         </td>
                     </tr>
                     <tr>
@@ -44,8 +44,8 @@ function List() {
                         <td>California Cll 100</td>
                         <td>3101111111</td>
                         <td>
-                            <a href="#" class="btn btn-light"> Edit </a>
-                            <a href="#" class="btn btn-danger"> Delete </a>
+                            <a href="#" className="btn btn-light"> Edit </a>
+                            <a href="#" className="btn btn-danger"> Delete </a>
                         </td>
                     </tr>
                 </tbody>

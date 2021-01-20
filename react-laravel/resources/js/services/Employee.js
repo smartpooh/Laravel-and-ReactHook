@@ -5,13 +5,9 @@ import axios from 'axios';
 const employee = {};
 
 employee.list = async () => {
-    try {
-        const urlList = baseUrl + "/role";
-        const res = await axios.get(urlList)
-            .then(response => { return response.data; })
-        return res;
-
-    } catch (error) {
-        return error;
-    }
+    const urlList = baseUrl + "/role";
+    const res = await axios.get(urlList)
+        .then(response => { return response.data; })
+        .catch(error => { return error; })
+    return res;
 }

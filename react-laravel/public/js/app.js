@@ -2405,7 +2405,7 @@ function Form() {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _services_Employee__WEBPACK_IMPORTED_MODULE_3__.default.list();
+                return _services_Employee__WEBPACK_IMPORTED_MODULE_3__.default.listRole();
 
               case 2:
                 res = _context.sent;
@@ -2572,8 +2572,9 @@ function Form() {
               children: "Choose..."
             }), ListRow.map(function (itemselect) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+                value: itemselect.rol_id,
                 children: itemselect.role_name
-              }, itemselect.rol_id);
+              });
             })]
           })]
         })
@@ -2744,7 +2745,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var baseUrl = "http://localhost:8000/api/employee";
 
 var employee = {};
-employee.list = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+employee.listRole = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
   var urlList, res;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
     while (1) {
@@ -2779,7 +2780,7 @@ employee.save = /*#__PURE__*/function () {
           case 0:
             urlSave = baseUrl + "/create";
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post(urlSave.data).then(function (response) {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post(urlSave, data).then(function (response) {
               return response.data;
             })["catch"](function (error) {
               return error;
@@ -2802,6 +2803,31 @@ employee.save = /*#__PURE__*/function () {
   };
 }();
 
+employee.listEmployee = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+  var urlList, res;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          urlList = baseUrl + "/list";
+          _context3.next = 3;
+          return axios__WEBPACK_IMPORTED_MODULE_1___default().get(urlList).then(function (response) {
+            return response.data;
+          })["catch"](function (error) {
+            return error;
+          });
+
+        case 3:
+          res = _context3.sent;
+          return _context3.abrupt("return", res);
+
+        case 5:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  }, _callee3);
+}));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (employee);
 
 /***/ }),

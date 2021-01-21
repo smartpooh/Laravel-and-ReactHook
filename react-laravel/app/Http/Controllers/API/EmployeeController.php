@@ -22,7 +22,7 @@ class EmployeeController extends Controller
     {
         try {
 
-            $insert['name_lastname'] = $request['nome'];
+            $insert['name_lastname'] = $request['name_lastname'];
             $insert['email'] = $request['email'];
             $insert['city'] = $request['city'];
             $insert['direction'] = $request['direction'];
@@ -34,6 +34,22 @@ class EmployeeController extends Controller
             $response['message'] = "Save sucessful";
             $response['sucess'] = true;
 
+        } catch (\Exception $e) {
+            $response['message'] = $e->getMessage();
+            $response['sucess'] = false;
+        }
+        return $response;
+    }
+    public function list(){
+
+        try {
+
+            $data = Employee::with("role")->get();
+
+            $response['data'] = $data;
+            $response['message'] = "List sucessful";
+            $response['success'] = true;
+            
         } catch (\Exception $e) {
             $response['message'] = $e->getMessage();
             $response['sucess'] = false;

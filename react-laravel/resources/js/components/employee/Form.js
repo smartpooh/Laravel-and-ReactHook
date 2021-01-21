@@ -16,7 +16,7 @@ function Form() {
     useEffect(() => {
         console.log("Entra no Effect");
         async function fetchDataRol() {
-            const res = await employeeServices.list();
+            const res = await employeeServices.listRole();
             setListRow(res.data);
         }
         fetchDataRol();
@@ -101,7 +101,7 @@ function Form() {
                             {
                                 ListRow.map((itemselect) => {
                                     return (
-                                        <option key={itemselect.rol_id}>{itemselect.role_name}</option>
+                                        <option value={itemselect.rol_id}>{itemselect.role_name}</option>
                                     )
                                 })
                             }

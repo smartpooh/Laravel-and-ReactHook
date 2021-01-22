@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import employeeServices from '../../services/Employee';
 
 function Edit(props) {
 
-    let userId = props.match.params.id;
+
+    useEffect(() => {
+        async function fetchDataEmployee() {
+
+            let id = props.match.params.id;
+            const res = await employeeServices.get(id);
+        }
+
+    }, [])
 
     return (
         <div>
-            <h4>Edit customer  {userId}  </h4>
+            <h4>Edit</h4>
             <hr />
             <div className="row">
                 <div className="col-md-6 mb-3">

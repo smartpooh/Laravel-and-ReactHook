@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
+import { Link } from 'react-router-dom';
 
 import employeeServices from "../../services/Employee";
 
 function List() {
+    
     const [listEmployee, setListEmployee] = useState([]);
-
+    
     useEffect(() => {
-
+        
         async function fetchDataEmployee() {
             const res = await employeeServices.listEmployee();
             setListEmployee(res.data);
         }
         fetchDataEmployee();
     }, [])
-
+    
     return (
         <section>
             <table className="table">
@@ -41,7 +43,7 @@ function List() {
                                     <td>{item.phone}</td>
                                     <td>{item.role.role_name}</td>
                                     <td>
-                                        <a href="#" className="btn btn-light"> Edit </a>
+                                        <Link className="btn btn-light" to={"/employee/edit/"+item.id}>Edit</Link>
                                         <a href="#" className="btn btn-danger"> Delete </a>
                                     </td>
                                 </tr>

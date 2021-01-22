@@ -1,6 +1,20 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+
+
+import employeeServices from "../../services/Employee";
 
 function List() {
+    const [listEmployee, setListEmployee] = useState([]);
+
+    useEffect(() => {
+
+        async function fetchDataEmployee() {
+            const res = await employeeServices.listEmployee();
+            setListEmployee(res.data);
+        }
+        fetchDataEmployee();
+    }, [])
+
     return (
         <section>
             <table className="table">
@@ -11,43 +25,29 @@ function List() {
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Rol</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>California Cll 100</td>
-                        <td>3101111111</td>
-                        <td>
-                            <a href="#" className="btn btn-light"> Edit </a>
-                            <a href="#" className="btn btn-danger"> Delete </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>California Cll 100</td>
-                        <td>3101111111</td>
-                        <td>
-                            <a href="#" className="btn btn-light"> Edit </a>
-                            <a href="#" className="btn btn-danger"> Delete </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>California Cll 100</td>
-                        <td>3101111111</td>
-                        <td>
-                            <a href="#" className="btn btn-light"> Edit </a>
-                            <a href="#" className="btn btn-danger"> Delete </a>
-                        </td>
-                    </tr>
+                    {
+                        listEmployee.map((item) => {
+                            return (
+                                <tr>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.name_lastname}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.direction}</td>
+                                    <td>{item.phone}</td>
+                                    <td>{item.role.role_name}</td>
+                                    <td>
+                                        <a href="#" className="btn btn-light"> Edit </a>
+                                        <a href="#" className="btn btn-danger"> Delete </a>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         </section>

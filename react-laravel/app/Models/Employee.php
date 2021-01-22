@@ -21,6 +21,6 @@ class Employee extends Model
     ];
 
     public function role(){
-        return $this->belongsTo("App\Moldels\Role","rol");
+        return $this->belongsTo("App\Models\Role","rol");
     }
 }

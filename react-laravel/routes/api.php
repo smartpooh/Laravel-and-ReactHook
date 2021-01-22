@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/employee/role', 'App\Http\Controllers\API\EmployeeController@list_role');
 
+Route::get('/employee/role', 'App\Http\Controllers\API\EmployeeController@list_role');
 Route::post('/employee/create', 'App\Http\Controllers\API\EmployeeController@create');
 Route::get('/employee/list', 'App\Http\Controllers\API\EmployeeController@list');
+Route::get('/employee/get/{id}', 'App\Http\Controllers\API\EmployeeController@get');
+
 

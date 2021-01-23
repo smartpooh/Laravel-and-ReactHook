@@ -98,5 +98,20 @@ class EmployeeController extends Controller
             $response['message'] = $e->getMessage();
             $response['sucess'] = false;
         }
+        return $response;
+    }
+    public function delete($id)
+    {
+        try {
+            $res = Employee::where("id", $id)->delete();
+
+            $response['res'] = $res;
+            $response['message'] = "delete success";
+            $response['sucess'] = true;
+        } catch (\Exception $e) {
+            $response['message'] = $e->getMessage();
+            $response['sucess'] = false;
+        }
+        return $response;
     }
 }

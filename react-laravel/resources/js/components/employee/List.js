@@ -6,17 +6,37 @@ import employeeServices from "../../services/Employee";
 import './global.css'
 
 function List() {
-    
+
     const [listEmployee, setListEmployee] = useState([]);
-    
+
     useEffect(() => {
-        
+
         async function fetchDataEmployee() {
             const res = await employeeServices.listEmployee();
             setListEmployee(res.data);
         }
         fetchDataEmployee();
     }, [])
+
+    const onClickDelete = async (i, id) => {
+
+        var yes = confirm("Tem certeza do que está fazendo?");
+
+        if (yes === true) {
+            const res = await employeeServices.delete(id);
+
+            if (res.success) {
+                alert(res.message);
+
+                const newList = listEmployee
+                newList.splice(i,1);
+                setListEmployee(newList);
+            }else{
+                alert(res.message);
+            }
+
+        }
+    }
     return (
         <section>
             <table className="table">
@@ -33,18 +53,20 @@ function List() {
                 </thead>
                 <tbody>
                     {
-                        listEmployee.map((item) => {
+                        listEmployee.map((item, i) => {
                             return (
                                 <tr>
-                                    <th scope="row">{item.id}</th>
+                                    <th scope="row">{i}</th>
                                     <td>{item.name_lastname}</td>
                                     <td>{item.email}</td>
                                     <td>{item.direction}</td>
                                     <td>{item.phone}</td>
                                     <td>{item.role.role_name}</td>
                                     <td>
-                                        <Link className="btn btn-light" to={"/employee/edit/"+item.id}>Edit</Link>
-                                        <a href="#" className="btn btn-danger"> Delete </a>
+                                        <Link className="btn btn-light"
+                                            to={"/employee/edit/" + item.id}>Edit</Link>
+                                        <a className="btn btn-danger"
+                                            onClick={(() => onClickDelete(i, item.id))}> Delete </a>
                                     </td>
                                 </tr>
                             )

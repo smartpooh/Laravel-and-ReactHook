@@ -2893,6 +2893,49 @@ function List() {
 
     fetchDataEmployee();
   }, []);
+
+  var onClickDelete = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(i, id) {
+      var yes, res, newList;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              yes = confirm("Tem certeza do que está fazendo?");
+
+              if (!(yes === true)) {
+                _context2.next = 6;
+                break;
+              }
+
+              _context2.next = 4;
+              return _services_Employee__WEBPACK_IMPORTED_MODULE_3__.default.delete(id);
+
+            case 4:
+              res = _context2.sent;
+
+              if (res.success) {
+                alert(res.message);
+                newList = listEmployee;
+                newList.splice(i, 1);
+                setListEmployee(newList);
+              } else {
+                alert(res.message);
+              }
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function onClickDelete(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", {
       className: "table",
@@ -2923,11 +2966,11 @@ function List() {
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("tbody", {
-        children: listEmployee.map(function (item) {
+        children: listEmployee.map(function (item, i) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
               scope: "row",
-              children: item.id
+              children: i
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
               children: item.name_lastname
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
@@ -2944,8 +2987,10 @@ function List() {
                 to: "/employee/edit/" + item.id,
                 children: "Edit"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                href: "#",
                 className: "btn btn-danger",
+                onClick: function onClick() {
+                  return onClickDelete(i, item.id);
+                },
                 children: " Delete "
               })]
             })]
@@ -3129,6 +3174,38 @@ employee.update = /*#__PURE__*/function () {
 
   return function (_x3) {
     return _ref5.apply(this, arguments);
+  };
+}();
+
+employee["delete"] = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id) {
+    var urlDelete, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            urlDelete = baseUrl + "/delete/" + id;
+            _context6.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().delete(urlDelete).then(function (response) {
+              return response.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context6.sent;
+            return _context6.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function (_x4) {
+    return _ref6.apply(this, arguments);
   };
 }();
 

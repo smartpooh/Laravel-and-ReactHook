@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import employeeServices from "../../services/Employee";
+import './global.css'
 
 function List() {
     
@@ -16,7 +17,6 @@ function List() {
         }
         fetchDataEmployee();
     }, [])
-    
     return (
         <section>
             <table className="table">

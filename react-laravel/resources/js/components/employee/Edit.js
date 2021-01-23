@@ -56,14 +56,15 @@ function Edit(props) {
             city,
             direction,
             phone,
-            rol,
+            rol
         }
         const res = await employeeServices.update(data);
 
+        console.log(res.success);
         if (res.success) {
-            alert(res.message);
-        }else{
-            alert(res.message);
+            return alert(res.message);
+        } else {
+            return alert(res.message);
         }
         
     }
@@ -74,7 +75,7 @@ function Edit(props) {
             <hr />
             <div className="row">
                 <div className="col-md-6 mb-3">
-                    <label for="firstName">Name employee</label>
+                    <label >Name employee</label>
                     <input type="text" className="form-control"
                         value={name_lastname}
                         onChange={(event) => setName(event.target.value)} />
@@ -83,7 +84,7 @@ function Edit(props) {
 
             <div className="row">
                 <div className="col-md-6 mb-3">
-                    <label for="email">Email</label>
+                    <label>Email</label>
                     <input type="email" className="form-control"
                         placeholder="you@example.com"
                         value={email}
@@ -105,7 +106,7 @@ function Edit(props) {
 
             <div className="row">
                 <div className="col-md-6 mb-3">
-                    <label for="address">Address</label>
+                    <label>Address</label>
                     <input type="text" className="form-control" placeholder="1234 Main St"
                         value={direction}
                         onChange={(event) => setDirection(event.target.value)} />
@@ -114,7 +115,7 @@ function Edit(props) {
 
             <div className="row">
                 <div className="col-md-6 mb-3">
-                    <label for="address">Phone </label>
+                    <label>Phone </label>
                     <input type="text" className="form-control" placeholder="123467890"
                         value={phone}
                         onChange={(event) => setPhone(event.target.value)} />
@@ -140,7 +141,8 @@ function Edit(props) {
 
             <div className="row">
                 <div className="col-md-6 mb-3">
-                    <button className="btn btn-primary btn-block" type="submit">Save</button>
+                    <button onClick={() =>updateEmployee()}
+                    className="btn btn-primary btn-block" type="submit">Save</button>
                 </div>
             </div>
         </div>

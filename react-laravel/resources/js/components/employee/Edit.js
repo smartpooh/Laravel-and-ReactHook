@@ -47,6 +47,27 @@ function Edit(props) {
 
     }, [])
 
+    const updateEmployee = async () => {
+
+        const data = {
+            id,
+            name_lastname,
+            email,
+            city,
+            direction,
+            phone,
+            rol,
+        }
+        const res = await employeeServices.update(data);
+
+        if (res.success) {
+            alert(res.message);
+        }else{
+            alert(res.message);
+        }
+        
+    }
+
     return (
         <div>
             <h4>Edit</h4>
@@ -54,14 +75,19 @@ function Edit(props) {
             <div className="row">
                 <div className="col-md-6 mb-3">
                     <label for="firstName">Name employee</label>
-                    <input type="text" className="form-control" value={name_lastname}/>
+                    <input type="text" className="form-control"
+                        value={name_lastname}
+                        onChange={(event) => setName(event.target.value)} />
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-md-6 mb-3">
                     <label for="email">Email</label>
-                    <input type="email" className="form-control" placeholder="you@example.com" value={email}/>
+                    <input type="email" className="form-control"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)} />
                 </div>
             </div>
 
@@ -80,14 +106,18 @@ function Edit(props) {
             <div className="row">
                 <div className="col-md-6 mb-3">
                     <label for="address">Address</label>
-                    <input type="text" className="form-control" placeholder="1234 Main St" value={direction}/>
+                    <input type="text" className="form-control" placeholder="1234 Main St"
+                        value={direction}
+                        onChange={(event) => setDirection(event.target.value)} />
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-md-6 mb-3">
                     <label for="address">Phone </label>
-                    <input type="text" className="form-control" placeholder="123467890" value={phone}/>
+                    <input type="text" className="form-control" placeholder="123467890"
+                        value={phone}
+                        onChange={(event) => setPhone(event.target.value)} />
                 </div>
             </div>
 

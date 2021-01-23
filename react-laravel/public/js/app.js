@@ -2350,6 +2350,48 @@ function Edit(props) {
 
     fetchDataRol();
   }, []);
+
+  var updateEmployee = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3() {
+      var data, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              data = {
+                id: id,
+                name_lastname: name_lastname,
+                email: email,
+                city: city,
+                direction: direction,
+                phone: phone,
+                rol: rol
+              };
+              _context3.next = 3;
+              return _services_Employee__WEBPACK_IMPORTED_MODULE_3__.default.update(data);
+
+            case 3:
+              res = _context3.sent;
+
+              if (res.success) {
+                alert(res.message);
+              } else {
+                alert(res.message);
+              }
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function updateEmployee() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h4", {
       children: "Edit"
@@ -2363,7 +2405,10 @@ function Edit(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
           type: "text",
           className: "form-control",
-          value: name_lastname
+          value: name_lastname,
+          onChange: function onChange(event) {
+            return setName(event.target.value);
+          }
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -2377,7 +2422,10 @@ function Edit(props) {
           type: "email",
           className: "form-control",
           placeholder: "you@example.com",
-          value: email
+          value: email,
+          onChange: function onChange(event) {
+            return setEmail(event.target.value);
+          }
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -2415,7 +2463,10 @@ function Edit(props) {
           type: "text",
           className: "form-control",
           placeholder: "1234 Main St",
-          value: direction
+          value: direction,
+          onChange: function onChange(event) {
+            return setDirection(event.target.value);
+          }
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -2429,7 +2480,10 @@ function Edit(props) {
           type: "text",
           className: "form-control",
           placeholder: "123467890",
-          value: phone
+          value: phone,
+          onChange: function onChange(event) {
+            return setPhone(event.target.value);
+          }
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -2759,144 +2813,9 @@ function Form() {
 /*!**************************************************!*\
   !*** ./resources/js/components/employee/List.js ***!
   \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _services_Employee__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/Employee */ "./resources/js/services/Employee.js");
-
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-function List() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      listEmployee = _useState2[0],
-      setListEmployee = _useState2[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    function fetchDataEmployee() {
-      return _fetchDataEmployee.apply(this, arguments);
-    }
-
-    function _fetchDataEmployee() {
-      _fetchDataEmployee = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _services_Employee__WEBPACK_IMPORTED_MODULE_3__.default.listEmployee();
-
-              case 2:
-                res = _context.sent;
-                setListEmployee(res.data);
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-      return _fetchDataEmployee.apply(this, arguments);
-    }
-
-    fetchDataEmployee();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("section", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", {
-      className: "table",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", {
-        className: "thead-dark",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "#"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Email"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Address"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Phone"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Rol"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-            scope: "col",
-            children: "Action"
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("tbody", {
-        children: listEmployee.map(function (item) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
-              scope: "row",
-              children: item.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-              children: item.name_lastname
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-              children: item.email
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-              children: item.direction
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-              children: item.phone
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-              children: item.role.role_name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-                className: "btn btn-light",
-                to: "/employee/edit/" + item.id,
-                children: "Edit"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                href: "#",
-                className: "btn btn-danger",
-                children: " Delete "
-              })]
-            })]
-          });
-        })
-      })]
-    })
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\resources\\js\\components\\employee\\List.js: Unexpected token (9:16)\n\n\u001b[0m \u001b[90m  7 | \u001b[39m\u001b[36mfunction\u001b[39m \u001b[33mList\u001b[39m() {\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m    state \u001b[33m=\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m        loading \u001b[33m=\u001b[39m \u001b[36mtrue\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m    \u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m    \u001b[36mconst\u001b[39m [listEmployee\u001b[33m,\u001b[39m setListEmployee] \u001b[33m=\u001b[39m useState([])\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:748:17)\n    at Object.raiseWithData (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:741:17)\n    at Object.raise (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Object.unexpected (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9101:16)\n    at Object.checkExpressionErrors (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9189:12)\n    at Object.parseMaybeAssign (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9953:12)\n    at Object.parseMaybeAssign (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9950:25)\n    at Object.parseExpressionBase (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9871:23)\n    at C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:9865:39\n    at Object.allowInAnd (C:\\Users\\gteix\\eclipse-workspace\\Laravel-and-ReactHooks\\react-laravel\\node_modules\\@babel\\parser\\lib\\index.js:11541:16)");
 
 /***/ }),
 
@@ -3037,6 +2956,38 @@ employee.get = /*#__PURE__*/function () {
 
   return function (_x2) {
     return _ref4.apply(this, arguments);
+  };
+}();
+
+employee.update = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
+    var urlUpdate, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            urlUpdate = baseUrl + "/update/" + data.id;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put(urlUpdate, data).then(function (response) {
+              return response.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x3) {
+    return _ref5.apply(this, arguments);
   };
 }();
 

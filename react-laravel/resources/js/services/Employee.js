@@ -38,15 +38,25 @@ employee.listEmployee = async () => {
     return res;
 }
 employee.get = async (id) => {
-    const urlGet = baseUrl + "/get/"+id;
+    const urlGet = baseUrl + "/get/" + id;
     const res = await axios.get(urlGet)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            return error;
+        })
+    return res;
+}
+employee.update = async (data) => {
+    const urlUpdate = baseUrl + "/update/" + data.id;
+    const res = await axios.put(urlUpdate, data)
     .then(response => {
         return response.data;
     })
-    .catch(error => { 
-        return error;
-    })
+        .catch(error => {
+            return error;
+        })
     return res;
 }
-
 export default employee;
